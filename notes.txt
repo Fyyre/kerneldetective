@@ -1,0 +1,5 @@
+-SeRegisterLogonSessionTerminatedRoutine
+-SeFileSystem
+-SwapContext
+-IofCallDriver
+-IofCompleteRequest

@@ -1,0 +1,671 @@
+          typedef struct _EPROCESS                                               // 134 elements, 0x2C0 bytes (sizeof) 
+          {                                                                                                            
+/*0x000*/     struct _KPROCESS Pcb;                                              // 34 elements, 0x98 bytes (sizeof)   
+/*0x098*/     struct _EX_PUSH_LOCK ProcessLock;                                  // 7 elements, 0x4 bytes (sizeof)     
+/*0x09C*/     UINT8        _PADDING0_[0x4];                                                                            
+/*0x0A0*/     union _LARGE_INTEGER CreateTime;                                   // 4 elements, 0x8 bytes (sizeof)     
+/*0x0A8*/     union _LARGE_INTEGER ExitTime;                                     // 4 elements, 0x8 bytes (sizeof)     
+/*0x0B0*/     struct _EX_RUNDOWN_REF RundownProtect;                             // 2 elements, 0x4 bytes (sizeof)     
+/*0x0B4*/     VOID*        UniqueProcessId;                                                                            
+/*0x0B8*/     struct _LIST_ENTRY ActiveProcessLinks;                             // 2 elements, 0x8 bytes (sizeof)     
+/*0x0C0*/     ULONG32      ProcessQuotaUsage[2];                                                                       
+/*0x0C8*/     ULONG32      ProcessQuotaPeak[2];                                                                        
+/*0x0D0*/     ULONG32      CommitCharge;                                                                               
+/*0x0D4*/     struct _EPROCESS_QUOTA_BLOCK* QuotaBlock;                                                                
+/*0x0D8*/     struct _PS_CPU_QUOTA_BLOCK* CpuQuotaBlock;                                                               
+/*0x0DC*/     ULONG32      PeakVirtualSize;                                                                            
+/*0x0E0*/     ULONG32      VirtualSize;                                                                                
+/*0x0E4*/     struct _LIST_ENTRY SessionProcessLinks;                            // 2 elements, 0x8 bytes (sizeof)     
+/*0x0EC*/     VOID*        DebugPort;                                                                                  
+              union                                                              // 3 elements, 0x4 bytes (sizeof)     
+              {                                                                                                        
+/*0x0F0*/         VOID*        ExceptionPortData;                                                                      
+/*0x0F0*/         ULONG32      ExceptionPortValue;                                                                     
+/*0x0F0*/         ULONG32      ExceptionPortState : 3;                           // 0 BitPosition                      
+              };                                                                                                       
+/*0x0F4*/     struct _HANDLE_TABLE* ObjectTable;                                                                       
+/*0x0F8*/     struct _EX_FAST_REF Token;                                         // 3 elements, 0x4 bytes (sizeof)     
+/*0x0FC*/     ULONG32      WorkingSetPage;                                                                             
+/*0x100*/     struct _EX_PUSH_LOCK AddressCreationLock;                          // 7 elements, 0x4 bytes (sizeof)     
+/*0x104*/     struct _ETHREAD* RotateInProgress;                                                                       
+/*0x108*/     struct _ETHREAD* ForkInProgress;                                                                         
+/*0x10C*/     ULONG32      HardwareTrigger;                                                                            
+/*0x110*/     struct _MM_AVL_TABLE* PhysicalVadRoot;                                                                   
+/*0x114*/     VOID*        CloneRoot;                                                                                  
+/*0x118*/     ULONG32      NumberOfPrivatePages;                                                                       
+/*0x11C*/     ULONG32      NumberOfLockedPages;                                                                        
+/*0x120*/     VOID*        Win32Process;                                                                               
+/*0x124*/     struct _EJOB* Job;                                                                                       
+/*0x128*/     VOID*        SectionObject;                                                                              
+/*0x12C*/     VOID*        SectionBaseAddress;                                                                         
+/*0x130*/     ULONG32      Cookie;                                                                                     
+/*0x134*/     ULONG32      Spare8;                                                                                     
+/*0x138*/     struct _PAGEFAULT_HISTORY* WorkingSetWatch;                                                              
+/*0x13C*/     VOID*        Win32WindowStation;                                                                         
+/*0x140*/     VOID*        InheritedFromUniqueProcessId;                                                               
+/*0x144*/     VOID*        LdtInformation;                                                                             
+/*0x148*/     VOID*        VdmObjects;                                                                                 
+/*0x14C*/     ULONG32      ConsoleHostProcess;                                                                         
+/*0x150*/     VOID*        DeviceMap;                                                                                  
+/*0x154*/     VOID*        EtwDataSource;                                                                              
+/*0x158*/     VOID*        FreeTebHint;                                                                                
+/*0x15C*/     UINT8        _PADDING1_[0x4];                                                                            
+              union                                                              // 2 elements, 0x8 bytes (sizeof)     
+              {                                                                                                        
+/*0x160*/         struct _HARDWARE_PTE PageDirectoryPte;                         // 13 elements, 0x4 bytes (sizeof)    
+/*0x160*/         UINT64       Filler;                                                                                 
+              };                                                                                                       
+/*0x168*/     VOID*        Session;                                                                                    
+/*0x16C*/     UINT8        ImageFileName[15];                                                                          
+/*0x17B*/     UINT8        PriorityClass;                                                                              
+/*0x17C*/     struct _LIST_ENTRY JobLinks;                                       // 2 elements, 0x8 bytes (sizeof)     
+/*0x184*/     VOID*        LockedPagesList;                                                                            
+/*0x188*/     struct _LIST_ENTRY ThreadListHead;                                 // 2 elements, 0x8 bytes (sizeof)     
+/*0x190*/     VOID*        SecurityPort;                                                                               
+/*0x194*/     VOID*        PaeTop;                                                                                     
+/*0x198*/     ULONG32      ActiveThreads;                                                                              
+/*0x19C*/     ULONG32      ImagePathHash;                                                                              
+/*0x1A0*/     ULONG32      DefaultHardErrorProcessing;                                                                 
+/*0x1A4*/     LONG32       LastThreadExitStatus;                                                                       
+/*0x1A8*/     struct _PEB* Peb;                                                                                        
+/*0x1AC*/     struct _EX_FAST_REF PrefetchTrace;                                 // 3 elements, 0x4 bytes (sizeof)     
+/*0x1B0*/     union _LARGE_INTEGER ReadOperationCount;                           // 4 elements, 0x8 bytes (sizeof)     
+/*0x1B8*/     union _LARGE_INTEGER WriteOperationCount;                          // 4 elements, 0x8 bytes (sizeof)     
+/*0x1C0*/     union _LARGE_INTEGER OtherOperationCount;                          // 4 elements, 0x8 bytes (sizeof)     
+/*0x1C8*/     union _LARGE_INTEGER ReadTransferCount;                            // 4 elements, 0x8 bytes (sizeof)     
+/*0x1D0*/     union _LARGE_INTEGER WriteTransferCount;                           // 4 elements, 0x8 bytes (sizeof)     
+/*0x1D8*/     union _LARGE_INTEGER OtherTransferCount;                           // 4 elements, 0x8 bytes (sizeof)     
+/*0x1E0*/     ULONG32      CommitChargeLimit;                                                                          
+/*0x1E4*/     ULONG32      CommitChargePeak;                                                                           
+/*0x1E8*/     VOID*        AweInfo;                                                                                    
+/*0x1EC*/     struct _SE_AUDIT_PROCESS_CREATION_INFO SeAuditProcessCreationInfo; // 1 elements, 0x4 bytes (sizeof)     
+/*0x1F0*/     struct _MMSUPPORT Vm;                                              // 21 elements, 0x6C bytes (sizeof)   
+/*0x25C*/     struct _LIST_ENTRY MmProcessLinks;                                 // 2 elements, 0x8 bytes (sizeof)     
+/*0x264*/     VOID*        HighestUserAddress;                                                                         
+/*0x268*/     ULONG32      ModifiedPageCount;                                                                          
+              union                                                              // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                                        
+/*0x26C*/         ULONG32      Flags2;                                                                                 
+                  struct                                                         // 20 elements, 0x4 bytes (sizeof)    
+                  {                                                                                                    
+/*0x26C*/             ULONG32      JobNotReallyActive : 1;                       // 0 BitPosition                      
+/*0x26C*/             ULONG32      AccountingFolded : 1;                         // 1 BitPosition                      
+/*0x26C*/             ULONG32      NewProcessReported : 1;                       // 2 BitPosition                      
+/*0x26C*/             ULONG32      ExitProcessReported : 1;                      // 3 BitPosition                      
+/*0x26C*/             ULONG32      ReportCommitChanges : 1;                      // 4 BitPosition                      
+/*0x26C*/             ULONG32      LastReportMemory : 1;                         // 5 BitPosition                      
+/*0x26C*/             ULONG32      ReportPhysicalPageChanges : 1;                // 6 BitPosition                      
+/*0x26C*/             ULONG32      HandleTableRundown : 1;                       // 7 BitPosition                      
+/*0x26C*/             ULONG32      NeedsHandleRundown : 1;                       // 8 BitPosition                      
+/*0x26C*/             ULONG32      RefTraceEnabled : 1;                          // 9 BitPosition                      
+/*0x26C*/             ULONG32      NumaAware : 1;                                // 10 BitPosition                     
+/*0x26C*/             ULONG32      ProtectedProcess : 1;                         // 11 BitPosition                     
+/*0x26C*/             ULONG32      DefaultPagePriority : 3;                      // 12 BitPosition                     
+/*0x26C*/             ULONG32      PrimaryTokenFrozen : 1;                       // 15 BitPosition                     
+/*0x26C*/             ULONG32      ProcessVerifierTarget : 1;                    // 16 BitPosition                     
+/*0x26C*/             ULONG32      StackRandomizationDisabled : 1;               // 17 BitPosition                     
+/*0x26C*/             ULONG32      AffinityPermanent : 1;                        // 18 BitPosition                     
+/*0x26C*/             ULONG32      AffinityUpdateEnable : 1;                     // 19 BitPosition                     
+/*0x26C*/             ULONG32      PropagateNode : 1;                            // 20 BitPosition                     
+/*0x26C*/             ULONG32      ExplicitAffinity : 1;                         // 21 BitPosition                     
+                  };                                                                                                   
+              };                                                                                                       
+              union                                                              // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                                        
+/*0x270*/         ULONG32      Flags;                                                                                  
+                  struct                                                         // 29 elements, 0x4 bytes (sizeof)    
+                  {                                                                                                    
+/*0x270*/             ULONG32      CreateReported : 1;                           // 0 BitPosition                      
+/*0x270*/             ULONG32      NoDebugInherit : 1;                           // 1 BitPosition                      
+/*0x270*/             ULONG32      ProcessExiting : 1;                           // 2 BitPosition                      
+/*0x270*/             ULONG32      ProcessDelete : 1;                            // 3 BitPosition                      
+/*0x270*/             ULONG32      Wow64SplitPages : 1;                          // 4 BitPosition                      
+/*0x270*/             ULONG32      VmDeleted : 1;                                // 5 BitPosition                      
+/*0x270*/             ULONG32      OutswapEnabled : 1;                           // 6 BitPosition                      
+/*0x270*/             ULONG32      Outswapped : 1;                               // 7 BitPosition                      
+/*0x270*/             ULONG32      ForkFailed : 1;                               // 8 BitPosition                      
+/*0x270*/             ULONG32      Wow64VaSpace4Gb : 1;                          // 9 BitPosition                      
+/*0x270*/             ULONG32      AddressSpaceInitialized : 2;                  // 10 BitPosition                     
+/*0x270*/             ULONG32      SetTimerResolution : 1;                       // 12 BitPosition                     
+/*0x270*/             ULONG32      BreakOnTermination : 1;                       // 13 BitPosition                     
+/*0x270*/             ULONG32      DeprioritizeViews : 1;                        // 14 BitPosition                     
+/*0x270*/             ULONG32      WriteWatch : 1;                               // 15 BitPosition                     
+/*0x270*/             ULONG32      ProcessInSession : 1;                         // 16 BitPosition                     
+/*0x270*/             ULONG32      OverrideAddressSpace : 1;                     // 17 BitPosition                     
+/*0x270*/             ULONG32      HasAddressSpace : 1;                          // 18 BitPosition                     
+/*0x270*/             ULONG32      LaunchPrefetched : 1;                         // 19 BitPosition                     
+/*0x270*/             ULONG32      InjectInpageErrors : 1;                       // 20 BitPosition                     
+/*0x270*/             ULONG32      VmTopDown : 1;                                // 21 BitPosition                     
+/*0x270*/             ULONG32      ImageNotifyDone : 1;                          // 22 BitPosition                     
+/*0x270*/             ULONG32      PdeUpdateNeeded : 1;                          // 23 BitPosition                     
+/*0x270*/             ULONG32      VdmAllowed : 1;                               // 24 BitPosition                     
+/*0x270*/             ULONG32      CrossSessionCreate : 1;                       // 25 BitPosition                     
+/*0x270*/             ULONG32      ProcessInserted : 1;                          // 26 BitPosition                     
+/*0x270*/             ULONG32      DefaultIoPriority : 3;                        // 27 BitPosition                     
+/*0x270*/             ULONG32      ProcessSelfDelete : 1;                        // 30 BitPosition                     
+/*0x270*/             ULONG32      SetTimerResolutionLink : 1;                   // 31 BitPosition                     
+                  };                                                                                                   
+              };                                                                                                       
+/*0x274*/     LONG32       ExitStatus;                                                                                 
+/*0x278*/     struct _MM_AVL_TABLE VadRoot;                                      // 6 elements, 0x20 bytes (sizeof)    
+/*0x298*/     struct _ALPC_PROCESS_CONTEXT AlpcContext;                          // 3 elements, 0x10 bytes (sizeof)    
+/*0x2A8*/     struct _LIST_ENTRY TimerResolutionLink;                            // 2 elements, 0x8 bytes (sizeof)     
+/*0x2B0*/     ULONG32      RequestedTimerResolution;                                                                   
+/*0x2B4*/     ULONG32      ActiveThreadsHighWatermark;                                                                 
+/*0x2B8*/     ULONG32      SmallestTimerResolution;                                                                    
+/*0x2BC*/     struct _PO_DIAG_STACK_RECORD* TimerResolutionStackRecord;                                                
+          }EPROCESS, *PEPROCESS;                                                                                       
+                                                                                                                       
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+          typedef struct _KPROCESS                       // 34 elements, 0x98 bytes (sizeof) 
+          {                                                                                  
+/*0x000*/     struct _DISPATCHER_HEADER Header;          // 30 elements, 0x10 bytes (sizeof) 
+/*0x010*/     struct _LIST_ENTRY ProfileListHead;        // 2 elements, 0x8 bytes (sizeof)   
+/*0x018*/     ULONG32      DirectoryTableBase;                                               
+/*0x01C*/     struct _KGDTENTRY LdtDescriptor;           // 3 elements, 0x8 bytes (sizeof)   
+/*0x024*/     struct _KIDTENTRY Int21Descriptor;         // 4 elements, 0x8 bytes (sizeof)   
+/*0x02C*/     struct _LIST_ENTRY ThreadListHead;         // 2 elements, 0x8 bytes (sizeof)   
+/*0x034*/     ULONG32      ProcessLock;                                                      
+/*0x038*/     struct _KAFFINITY_EX Affinity;             // 4 elements, 0xC bytes (sizeof)   
+/*0x044*/     struct _LIST_ENTRY ReadyListHead;          // 2 elements, 0x8 bytes (sizeof)   
+/*0x04C*/     struct _SINGLE_LIST_ENTRY SwapListEntry;   // 1 elements, 0x4 bytes (sizeof)   
+/*0x050*/     struct _KAFFINITY_EX ActiveProcessors;     // 4 elements, 0xC bytes (sizeof)   
+              union                                      // 2 elements, 0x4 bytes (sizeof)   
+              {                                                                              
+                  struct                                 // 5 elements, 0x4 bytes (sizeof)   
+                  {                                                                          
+/*0x05C*/             LONG32       AutoAlignment : 1;    // 0 BitPosition                    
+/*0x05C*/             LONG32       DisableBoost : 1;     // 1 BitPosition                    
+/*0x05C*/             LONG32       DisableQuantum : 1;   // 2 BitPosition                    
+/*0x05C*/             ULONG32      ActiveGroupsMask : 1; // 3 BitPosition                    
+/*0x05C*/             LONG32       ReservedFlags : 28;   // 4 BitPosition                    
+                  };                                                                         
+/*0x05C*/         LONG32       ProcessFlags;                                                 
+              };                                                                             
+/*0x060*/     CHAR         BasePriority;                                                     
+/*0x061*/     CHAR         QuantumReset;                                                     
+/*0x062*/     UINT8        Visited;                                                          
+/*0x063*/     UINT8        Unused3;                                                          
+/*0x064*/     ULONG32      ThreadSeed[1];                                                    
+/*0x068*/     UINT16       IdealNode[1];                                                     
+/*0x06A*/     UINT16       IdealGlobalNode;                                                  
+/*0x06C*/     union _KEXECUTE_OPTIONS Flags;             // 9 elements, 0x1 bytes (sizeof)   
+/*0x06D*/     UINT8        Unused1;                                                          
+/*0x06E*/     UINT16       IopmOffset;                                                       
+/*0x070*/     ULONG32      Unused4;                                                          
+/*0x074*/     union _KSTACK_COUNT StackCount;            // 3 elements, 0x4 bytes (sizeof)   
+/*0x078*/     struct _LIST_ENTRY ProcessListEntry;       // 2 elements, 0x8 bytes (sizeof)   
+/*0x080*/     UINT64       CycleTime;                                                        
+/*0x088*/     ULONG32      KernelTime;                                                       
+/*0x08C*/     ULONG32      UserTime;                                                         
+/*0x090*/     VOID*        VdmTrapcHandler;                                                  
+/*0x094*/     UINT8        _PADDING0_[0x4];                                                  
+          }KPROCESS, *PKPROCESS;                                                             
+                                                                                             
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+          typedef struct _KTHREAD                                 // 114 elements, 0x200 bytes (sizeof) 
+          {                                                                                             
+/*0x000*/     struct _DISPATCHER_HEADER Header;                   // 30 elements, 0x10 bytes (sizeof)   
+/*0x010*/     UINT64       CycleTime;                                                                   
+/*0x018*/     ULONG32      HighCycleTime;                                                               
+/*0x01C*/     UINT8        _PADDING0_[0x4];                                                             
+/*0x020*/     UINT64       QuantumTarget;                                                               
+/*0x028*/     VOID*        InitialStack;                                                                
+/*0x02C*/     VOID*        StackLimit;                                                                  
+/*0x030*/     VOID*        KernelStack;                                                                 
+/*0x034*/     ULONG32      ThreadLock;                                                                  
+/*0x038*/     union _KWAIT_STATUS_REGISTER WaitRegister;          // 8 elements, 0x1 bytes (sizeof)     
+/*0x039*/     UINT8        Running;                                                                     
+/*0x03A*/     UINT8        Alerted[2];                                                                  
+              union                                               // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                         
+                  struct                                          // 14 elements, 0x4 bytes (sizeof)    
+                  {                                                                                     
+/*0x03C*/             ULONG32      KernelStackResident : 1;       // 0 BitPosition                      
+/*0x03C*/             ULONG32      ReadyTransition : 1;           // 1 BitPosition                      
+/*0x03C*/             ULONG32      ProcessReadyQueue : 1;         // 2 BitPosition                      
+/*0x03C*/             ULONG32      WaitNext : 1;                  // 3 BitPosition                      
+/*0x03C*/             ULONG32      SystemAffinityActive : 1;      // 4 BitPosition                      
+/*0x03C*/             ULONG32      Alertable : 1;                 // 5 BitPosition                      
+/*0x03C*/             ULONG32      GdiFlushActive : 1;            // 6 BitPosition                      
+/*0x03C*/             ULONG32      UserStackWalkActive : 1;       // 7 BitPosition                      
+/*0x03C*/             ULONG32      ApcInterruptRequest : 1;       // 8 BitPosition                      
+/*0x03C*/             ULONG32      ForceDeferSchedule : 1;        // 9 BitPosition                      
+/*0x03C*/             ULONG32      QuantumEndMigrate : 1;         // 10 BitPosition                     
+/*0x03C*/             ULONG32      UmsDirectedSwitchEnable : 1;   // 11 BitPosition                     
+/*0x03C*/             ULONG32      TimerActive : 1;               // 12 BitPosition                     
+/*0x03C*/             ULONG32      Reserved : 19;                 // 13 BitPosition                     
+                  };                                                                                    
+/*0x03C*/         LONG32       MiscFlags;                                                               
+              };                                                                                        
+              union                                               // 2 elements, 0x18 bytes (sizeof)    
+              {                                                                                         
+/*0x040*/         struct _KAPC_STATE ApcState;                    // 5 elements, 0x18 bytes (sizeof)    
+                  struct                                          // 2 elements, 0x18 bytes (sizeof)    
+                  {                                                                                     
+/*0x040*/             UINT8        ApcStateFill[23];                                                    
+/*0x057*/             CHAR         Priority;                                                            
+                  };                                                                                    
+              };                                                                                        
+/*0x058*/     ULONG32      NextProcessor;                                                               
+/*0x05C*/     ULONG32      DeferredProcessor;                                                           
+/*0x060*/     ULONG32      ApcQueueLock;                                                                
+/*0x064*/     ULONG32      ContextSwitches;                                                             
+/*0x068*/     UINT8        State;                                                                       
+/*0x069*/     CHAR         NpxState;                                                                    
+/*0x06A*/     UINT8        WaitIrql;                                                                    
+/*0x06B*/     CHAR         WaitMode;                                                                    
+/*0x06C*/     LONG32       WaitStatus;                                                                  
+/*0x070*/     struct _KWAIT_BLOCK* WaitBlockList;                                                       
+              union                                               // 2 elements, 0x8 bytes (sizeof)     
+              {                                                                                         
+/*0x074*/         struct _LIST_ENTRY WaitListEntry;               // 2 elements, 0x8 bytes (sizeof)     
+/*0x074*/         struct _SINGLE_LIST_ENTRY SwapListEntry;        // 1 elements, 0x4 bytes (sizeof)     
+              };                                                                                        
+/*0x07C*/     struct _KQUEUE* Queue;                                                                    
+/*0x080*/     ULONG32      WaitTime;                                                                    
+              union                                               // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                         
+                  struct                                          // 2 elements, 0x4 bytes (sizeof)     
+                  {                                                                                     
+/*0x084*/             INT16        KernelApcDisable;                                                    
+/*0x086*/             INT16        SpecialApcDisable;                                                   
+                  };                                                                                    
+/*0x084*/         ULONG32      CombinedApcDisable;                                                      
+              };                                                                                        
+/*0x088*/     VOID*        Teb;                                                                         
+/*0x08C*/     UINT8        _PADDING1_[0x4];                                                             
+/*0x090*/     struct _KTIMER Timer;                               // 5 elements, 0x28 bytes (sizeof)    
+              union                                               // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                         
+                  struct                                          // 10 elements, 0x4 bytes (sizeof)    
+                  {                                                                                     
+/*0x0B8*/             ULONG32      AutoAlignment : 1;             // 0 BitPosition                      
+/*0x0B8*/             ULONG32      DisableBoost : 1;              // 1 BitPosition                      
+/*0x0B8*/             ULONG32      EtwStackTraceApc1Inserted : 1; // 2 BitPosition                      
+/*0x0B8*/             ULONG32      EtwStackTraceApc2Inserted : 1; // 3 BitPosition                      
+/*0x0B8*/             ULONG32      CalloutActive : 1;             // 4 BitPosition                      
+/*0x0B8*/             ULONG32      ApcQueueable : 1;              // 5 BitPosition                      
+/*0x0B8*/             ULONG32      EnableStackSwap : 1;           // 6 BitPosition                      
+/*0x0B8*/             ULONG32      GuiThread : 1;                 // 7 BitPosition                      
+/*0x0B8*/             ULONG32      UmsPerformingSyscall : 1;      // 8 BitPosition                      
+/*0x0B8*/             ULONG32      ReservedFlags : 23;            // 9 BitPosition                      
+                  };                                                                                    
+/*0x0B8*/         LONG32       ThreadFlags;                                                             
+              };                                                                                        
+/*0x0BC*/     VOID*        ServiceTable;                                                                
+/*0x0C0*/     struct _KWAIT_BLOCK WaitBlock[4];                                                         
+/*0x120*/     struct _LIST_ENTRY QueueListEntry;                  // 2 elements, 0x8 bytes (sizeof)     
+/*0x128*/     struct _KTRAP_FRAME* TrapFrame;                                                           
+/*0x12C*/     VOID*        FirstArgument;                                                               
+              union                                               // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                         
+/*0x130*/         VOID*        CallbackStack;                                                           
+/*0x130*/         ULONG32      CallbackDepth;                                                           
+              };                                                                                        
+/*0x134*/     UINT8        ApcStateIndex;                                                               
+/*0x135*/     CHAR         BasePriority;                                                                
+              union                                               // 2 elements, 0x1 bytes (sizeof)     
+              {                                                                                         
+/*0x136*/         CHAR         PriorityDecrement;                                                       
+                  struct                                          // 2 elements, 0x1 bytes (sizeof)     
+                  {                                                                                     
+/*0x136*/             UINT8        ForegroundBoost : 4;           // 0 BitPosition                      
+/*0x136*/             UINT8        UnusualBoost : 4;              // 4 BitPosition                      
+                  };                                                                                    
+              };                                                                                        
+/*0x137*/     UINT8        Preempted;                                                                   
+/*0x138*/     UINT8        AdjustReason;                                                                
+/*0x139*/     CHAR         AdjustIncrement;                                                             
+/*0x13A*/     CHAR         PreviousMode;                                                                
+/*0x13B*/     CHAR         Saturation;                                                                  
+/*0x13C*/     ULONG32      SystemCallNumber;                                                            
+/*0x140*/     ULONG32      FreezeCount;                                                                 
+/*0x144*/     struct _GROUP_AFFINITY UserAffinity;                // 3 elements, 0xC bytes (sizeof)     
+/*0x150*/     struct _KPROCESS* Process;                                                                
+/*0x154*/     struct _GROUP_AFFINITY Affinity;                    // 3 elements, 0xC bytes (sizeof)     
+/*0x160*/     ULONG32      IdealProcessor;                                                              
+/*0x164*/     ULONG32      UserIdealProcessor;                                                          
+/*0x168*/     struct _KAPC_STATE* ApcStatePointer[2];                                                   
+              union                                               // 2 elements, 0x18 bytes (sizeof)    
+              {                                                                                         
+/*0x170*/         struct _KAPC_STATE SavedApcState;               // 5 elements, 0x18 bytes (sizeof)    
+                  struct                                          // 2 elements, 0x18 bytes (sizeof)    
+                  {                                                                                     
+/*0x170*/             UINT8        SavedApcStateFill[23];                                               
+/*0x187*/             UINT8        WaitReason;                                                          
+                  };                                                                                    
+              };                                                                                        
+/*0x188*/     CHAR         SuspendCount;                                                                
+/*0x189*/     CHAR         Spare1;                                                                      
+/*0x18A*/     UINT8        OtherPlatformFill;                                                           
+/*0x18B*/     UINT8        _PADDING2_[0x1];                                                             
+/*0x18C*/     VOID*        Win32Thread;                                                                 
+/*0x190*/     VOID*        StackBase;                                                                   
+              union                                               // 7 elements, 0x30 bytes (sizeof)    
+              {                                                                                         
+/*0x194*/         struct _KAPC SuspendApc;                        // 16 elements, 0x30 bytes (sizeof)   
+                  struct                                          // 2 elements, 0x30 bytes (sizeof)    
+                  {                                                                                     
+/*0x194*/             UINT8        SuspendApcFill0[1];                                                  
+/*0x195*/             UINT8        ResourceIndex;                                                       
+/*0x196*/             UINT8        _PADDING3_[0x2E];                                                    
+                  };                                                                                    
+                  struct                                          // 2 elements, 0x30 bytes (sizeof)    
+                  {                                                                                     
+/*0x194*/             UINT8        SuspendApcFill1[3];                                                  
+/*0x197*/             UINT8        QuantumReset;                                                        
+/*0x198*/             UINT8        _PADDING4_[0x2C];                                                    
+                  };                                                                                    
+                  struct                                          // 2 elements, 0x30 bytes (sizeof)    
+                  {                                                                                     
+/*0x194*/             UINT8        SuspendApcFill2[4];                                                  
+/*0x198*/             ULONG32      KernelTime;                                                          
+/*0x19C*/             UINT8        _PADDING5_[0x28];                                                    
+                  };                                                                                    
+                  struct                                          // 2 elements, 0x30 bytes (sizeof)    
+                  {                                                                                     
+/*0x194*/             UINT8        SuspendApcFill3[36];                                                 
+/*0x1B8*/             struct _KPRCB* WaitPrcb;                                                          
+/*0x1BC*/             UINT8        _PADDING6_[0x8];                                                     
+                  };                                                                                    
+                  struct                                          // 2 elements, 0x30 bytes (sizeof)    
+                  {                                                                                     
+/*0x194*/             UINT8        SuspendApcFill4[40];                                                 
+/*0x1BC*/             VOID*        LegoData;                                                            
+/*0x1C0*/             UINT8        _PADDING7_[0x4];                                                     
+                  };                                                                                    
+                  struct                                          // 2 elements, 0x30 bytes (sizeof)    
+                  {                                                                                     
+/*0x194*/             UINT8        SuspendApcFill5[47];                                                 
+/*0x1C3*/             UINT8        LargeStack;                                                          
+                  };                                                                                    
+              };                                                                                        
+/*0x1C4*/     ULONG32      UserTime;                                                                    
+              union                                               // 2 elements, 0x14 bytes (sizeof)    
+              {                                                                                         
+/*0x1C8*/         struct _KSEMAPHORE SuspendSemaphore;            // 2 elements, 0x14 bytes (sizeof)    
+/*0x1C8*/         UINT8        SuspendSemaphorefill[20];                                                
+              };                                                                                        
+/*0x1DC*/     ULONG32      SListFaultCount;                                                             
+/*0x1E0*/     struct _LIST_ENTRY ThreadListEntry;                 // 2 elements, 0x8 bytes (sizeof)     
+/*0x1E8*/     struct _LIST_ENTRY MutantListHead;                  // 2 elements, 0x8 bytes (sizeof)     
+/*0x1F0*/     VOID*        SListFaultAddress;                                                           
+/*0x1F4*/     struct _KTHREAD_COUNTERS* ThreadCounters;                                                 
+/*0x1F8*/     struct _XSTATE_SAVE* XStateSave;                                                          
+/*0x1FC*/     UINT8        _PADDING8_[0x4];                                                             
+          }KTHREAD, *PKTHREAD;                                                                          
+                                                                                                        
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+          typedef struct _ETHREAD                                              // 88 elements, 0x2B8 bytes (sizeof)  
+          {                                                                                                          
+/*0x000*/     struct _KTHREAD Tcb;                                             // 114 elements, 0x200 bytes (sizeof) 
+/*0x200*/     union _LARGE_INTEGER CreateTime;                                 // 4 elements, 0x8 bytes (sizeof)     
+              union                                                            // 2 elements, 0x8 bytes (sizeof)     
+              {                                                                                                      
+/*0x208*/         union _LARGE_INTEGER ExitTime;                               // 4 elements, 0x8 bytes (sizeof)     
+/*0x208*/         struct _LIST_ENTRY KeyedWaitChain;                           // 2 elements, 0x8 bytes (sizeof)     
+              };                                                                                                     
+/*0x210*/     LONG32       ExitStatus;                                                                               
+              union                                                            // 2 elements, 0x8 bytes (sizeof)     
+              {                                                                                                      
+/*0x214*/         struct _LIST_ENTRY PostBlockList;                            // 2 elements, 0x8 bytes (sizeof)     
+                  struct                                                       // 2 elements, 0x8 bytes (sizeof)     
+                  {                                                                                                  
+/*0x214*/             VOID*        ForwardLinkShadow;                                                                
+/*0x218*/             VOID*        StartAddress;                                                                     
+                  };                                                                                                 
+              };                                                                                                     
+              union                                                            // 3 elements, 0x4 bytes (sizeof)     
+              {                                                                                                      
+/*0x21C*/         struct _TERMINATION_PORT* TerminationPort;                                                         
+/*0x21C*/         struct _ETHREAD* ReaperLink;                                                                       
+/*0x21C*/         VOID*        KeyedWaitValue;                                                                       
+              };                                                                                                     
+/*0x220*/     ULONG32      ActiveTimerListLock;                                                                      
+/*0x224*/     struct _LIST_ENTRY ActiveTimerListHead;                          // 2 elements, 0x8 bytes (sizeof)     
+/*0x22C*/     struct _CLIENT_ID Cid;                                           // 2 elements, 0x8 bytes (sizeof)     
+              union                                                            // 2 elements, 0x14 bytes (sizeof)    
+              {                                                                                                      
+/*0x234*/         struct _KSEMAPHORE KeyedWaitSemaphore;                       // 2 elements, 0x14 bytes (sizeof)    
+/*0x234*/         struct _KSEMAPHORE AlpcWaitSemaphore;                        // 2 elements, 0x14 bytes (sizeof)    
+              };                                                                                                     
+/*0x248*/     union _PS_CLIENT_SECURITY_CONTEXT ClientSecurity;                // 4 elements, 0x4 bytes (sizeof)     
+/*0x24C*/     struct _LIST_ENTRY IrpList;                                      // 2 elements, 0x8 bytes (sizeof)     
+/*0x254*/     ULONG32      TopLevelIrp;                                                                              
+/*0x258*/     struct _DEVICE_OBJECT* DeviceToVerify;                                                                 
+/*0x25C*/     union _PSP_CPU_QUOTA_APC* CpuQuotaApc;                                                                 
+/*0x260*/     VOID*        Win32StartAddress;                                                                        
+/*0x264*/     VOID*        LegacyPowerObject;                                                                        
+/*0x268*/     struct _LIST_ENTRY ThreadListEntry;                              // 2 elements, 0x8 bytes (sizeof)     
+/*0x270*/     struct _EX_RUNDOWN_REF RundownProtect;                           // 2 elements, 0x4 bytes (sizeof)     
+/*0x274*/     struct _EX_PUSH_LOCK ThreadLock;                                 // 7 elements, 0x4 bytes (sizeof)     
+/*0x278*/     ULONG32      ReadClusterSize;                                                                          
+/*0x27C*/     LONG32       MmLockOrdering;                                                                           
+              union                                                            // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                                      
+/*0x280*/         ULONG32      CrossThreadFlags;                                                                     
+                  struct                                                       // 14 elements, 0x4 bytes (sizeof)    
+                  {                                                                                                  
+/*0x280*/             ULONG32      Terminated : 1;                             // 0 BitPosition                      
+/*0x280*/             ULONG32      ThreadInserted : 1;                         // 1 BitPosition                      
+/*0x280*/             ULONG32      HideFromDebugger : 1;                       // 2 BitPosition                      
+/*0x280*/             ULONG32      ActiveImpersonationInfo : 1;                // 3 BitPosition                      
+/*0x280*/             ULONG32      SystemThread : 1;                           // 4 BitPosition                      
+/*0x280*/             ULONG32      HardErrorsAreDisabled : 1;                  // 5 BitPosition                      
+/*0x280*/             ULONG32      BreakOnTermination : 1;                     // 6 BitPosition                      
+/*0x280*/             ULONG32      SkipCreationMsg : 1;                        // 7 BitPosition                      
+/*0x280*/             ULONG32      SkipTerminationMsg : 1;                     // 8 BitPosition                      
+/*0x280*/             ULONG32      CopyTokenOnOpen : 1;                        // 9 BitPosition                      
+/*0x280*/             ULONG32      ThreadIoPriority : 3;                       // 10 BitPosition                     
+/*0x280*/             ULONG32      ThreadPagePriority : 3;                     // 13 BitPosition                     
+/*0x280*/             ULONG32      RundownFail : 1;                            // 16 BitPosition                     
+/*0x280*/             ULONG32      NeedsWorkingSetAging : 1;                   // 17 BitPosition                     
+                  };                                                                                                 
+              };                                                                                                     
+              union                                                            // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                                      
+/*0x284*/         ULONG32      SameThreadPassiveFlags;                                                               
+                  struct                                                       // 7 elements, 0x4 bytes (sizeof)     
+                  {                                                                                                  
+/*0x284*/             ULONG32      ActiveExWorker : 1;                         // 0 BitPosition                      
+/*0x284*/             ULONG32      ExWorkerCanWaitUser : 1;                    // 1 BitPosition                      
+/*0x284*/             ULONG32      MemoryMaker : 1;                            // 2 BitPosition                      
+/*0x284*/             ULONG32      ClonedThread : 1;                           // 3 BitPosition                      
+/*0x284*/             ULONG32      KeyedEventInUse : 1;                        // 4 BitPosition                      
+/*0x284*/             ULONG32      RateApcState : 2;                           // 5 BitPosition                      
+/*0x284*/             ULONG32      SelfTerminate : 1;                          // 7 BitPosition                      
+                  };                                                                                                 
+              };                                                                                                     
+              union                                                            // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                                      
+/*0x288*/         ULONG32      SameThreadApcFlags;                                                                   
+                  struct                                                       // 4 elements, 0x4 bytes (sizeof)     
+                  {                                                                                                  
+                      struct                                                   // 8 elements, 0x1 bytes (sizeof)     
+                      {                                                                                              
+/*0x288*/                 UINT8        Spare : 1;                              // 0 BitPosition                      
+/*0x288*/                 UINT8        StartAddressInvalid : 1;                // 1 BitPosition                      
+/*0x288*/                 UINT8        EtwPageFaultCalloutActive : 1;          // 2 BitPosition                      
+/*0x288*/                 UINT8        OwnsProcessWorkingSetExclusive : 1;     // 3 BitPosition                      
+/*0x288*/                 UINT8        OwnsProcessWorkingSetShared : 1;        // 4 BitPosition                      
+/*0x288*/                 UINT8        OwnsSystemCacheWorkingSetExclusive : 1; // 5 BitPosition                      
+/*0x288*/                 UINT8        OwnsSystemCacheWorkingSetShared : 1;    // 6 BitPosition                      
+/*0x288*/                 UINT8        OwnsSessionWorkingSetExclusive : 1;     // 7 BitPosition                      
+                      };                                                                                             
+                      struct                                                   // 8 elements, 0x1 bytes (sizeof)     
+                      {                                                                                              
+/*0x289*/                 UINT8        OwnsSessionWorkingSetShared : 1;        // 0 BitPosition                      
+/*0x289*/                 UINT8        OwnsProcessAddressSpaceExclusive : 1;   // 1 BitPosition                      
+/*0x289*/                 UINT8        OwnsProcessAddressSpaceShared : 1;      // 2 BitPosition                      
+/*0x289*/                 UINT8        SuppressSymbolLoad : 1;                 // 3 BitPosition                      
+/*0x289*/                 UINT8        Prefetching : 1;                        // 4 BitPosition                      
+/*0x289*/                 UINT8        OwnsDynamicMemoryShared : 1;            // 5 BitPosition                      
+/*0x289*/                 UINT8        OwnsChangeControlAreaExclusive : 1;     // 6 BitPosition                      
+/*0x289*/                 UINT8        OwnsChangeControlAreaShared : 1;        // 7 BitPosition                      
+                      };                                                                                             
+                      struct                                                   // 6 elements, 0x1 bytes (sizeof)     
+                      {                                                                                              
+/*0x28A*/                 UINT8        OwnsPagedPoolWorkingSetExclusive : 1;   // 0 BitPosition                      
+/*0x28A*/                 UINT8        OwnsPagedPoolWorkingSetShared : 1;      // 1 BitPosition                      
+/*0x28A*/                 UINT8        OwnsSystemPtesWorkingSetExclusive : 1;  // 2 BitPosition                      
+/*0x28A*/                 UINT8        OwnsSystemPtesWorkingSetShared : 1;     // 3 BitPosition                      
+/*0x28A*/                 UINT8        TrimTrigger : 2;                        // 4 BitPosition                      
+/*0x28A*/                 UINT8        Spare1 : 2;                             // 6 BitPosition                      
+                      };                                                                                             
+/*0x28B*/             UINT8        PriorityRegionActive;                                                             
+                  };                                                                                                 
+              };                                                                                                     
+/*0x28C*/     UINT8        CacheManagerActive;                                                                       
+/*0x28D*/     UINT8        DisablePageFaultClustering;                                                               
+/*0x28E*/     UINT8        ActiveFaultCount;                                                                         
+/*0x28F*/     UINT8        LockOrderState;                                                                           
+/*0x290*/     ULONG32      AlpcMessageId;                                                                            
+              union                                                            // 2 elements, 0x4 bytes (sizeof)     
+              {                                                                                                      
+/*0x294*/         VOID*        AlpcMessage;                                                                          
+/*0x294*/         ULONG32      AlpcReceiveAttributeSet;                                                              
+              };                                                                                                     
+/*0x298*/     struct _LIST_ENTRY AlpcWaitListEntry;                            // 2 elements, 0x8 bytes (sizeof)     
+/*0x2A0*/     ULONG32      CacheManagerCount;                                                                        
+/*0x2A4*/     ULONG32      IoBoostCount;                                                                             
+/*0x2A8*/     ULONG32      IrpListLock;                                                                              
+/*0x2AC*/     VOID*        ReservedForSynchTracking;                                                                 
+/*0x2B0*/     struct _SINGLE_LIST_ENTRY CmCallbackListHead;                    // 1 elements, 0x4 bytes (sizeof)     
+/*0x2B4*/     UINT8        _PADDING0_[0x4];                                                                          
+          }ETHREAD, *PETHREAD;                                                                                       
+                                                                                                                     
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+          typedef struct _PEB                                                                               // 91 elements, 0x248 bytes (sizeof) 
+          {                                                                                                                                      
+/*0x000*/     UINT8        InheritedAddressSpace;                                                                                                
+/*0x001*/     UINT8        ReadImageFileExecOptions;                                                                                             
+/*0x002*/     UINT8        BeingDebugged;                                                                                                        
+              union                                                                                         // 2 elements, 0x1 bytes (sizeof)    
+              {                                                                                                                                  
+/*0x003*/         UINT8        BitField;                                                                                                         
+                  struct                                                                                    // 6 elements, 0x1 bytes (sizeof)    
+                  {                                                                                                                              
+/*0x003*/             UINT8        ImageUsesLargePages : 1;                                                 // 0 BitPosition                     
+/*0x003*/             UINT8        IsProtectedProcess : 1;                                                  // 1 BitPosition                     
+/*0x003*/             UINT8        IsLegacyProcess : 1;                                                     // 2 BitPosition                     
+/*0x003*/             UINT8        IsImageDynamicallyRelocated : 1;                                         // 3 BitPosition                     
+/*0x003*/             UINT8        SkipPatchingUser32Forwarders : 1;                                        // 4 BitPosition                     
+/*0x003*/             UINT8        SpareBits : 3;                                                           // 5 BitPosition                     
+                  };                                                                                                                             
+              };                                                                                                                                 
+/*0x004*/     VOID*        Mutant;                                                                                                               
+/*0x008*/     VOID*        ImageBaseAddress;                                                                                                     
+/*0x00C*/     struct _PEB_LDR_DATA* Ldr;                                                                                                         
+/*0x010*/     struct _RTL_USER_PROCESS_PARAMETERS* ProcessParameters;                                                                            
+/*0x014*/     VOID*        SubSystemData;                                                                                                        
+/*0x018*/     VOID*        ProcessHeap;                                                                                                          
+/*0x01C*/     struct _RTL_CRITICAL_SECTION* FastPebLock;                                                                                         
+/*0x020*/     VOID*        AtlThunkSListPtr;                                                                                                     
+/*0x024*/     VOID*        IFEOKey;                                                                                                              
+              union                                                                                         // 2 elements, 0x4 bytes (sizeof)    
+              {                                                                                                                                  
+/*0x028*/         ULONG32      CrossProcessFlags;                                                                                                
+                  struct                                                                                    // 6 elements, 0x4 bytes (sizeof)    
+                  {                                                                                                                              
+/*0x028*/             ULONG32      ProcessInJob : 1;                                                        // 0 BitPosition                     
+/*0x028*/             ULONG32      ProcessInitializing : 1;                                                 // 1 BitPosition                     
+/*0x028*/             ULONG32      ProcessUsingVEH : 1;                                                     // 2 BitPosition                     
+/*0x028*/             ULONG32      ProcessUsingVCH : 1;                                                     // 3 BitPosition                     
+/*0x028*/             ULONG32      ProcessUsingFTH : 1;                                                     // 4 BitPosition                     
+/*0x028*/             ULONG32      ReservedBits0 : 27;                                                      // 5 BitPosition                     
+                  };                                                                                                                             
+              };                                                                                                                                 
+              union                                                                                         // 2 elements, 0x4 bytes (sizeof)    
+              {                                                                                                                                  
+/*0x02C*/         VOID*        KernelCallbackTable;                                                                                              
+/*0x02C*/         VOID*        UserSharedInfoPtr;                                                                                                
+              };                                                                                                                                 
+/*0x030*/     ULONG32      SystemReserved[1];                                                                                                    
+/*0x034*/     ULONG32      AtlThunkSListPtr32;                                                                                                   
+/*0x038*/     VOID*        ApiSetMap;                                                                                                            
+/*0x03C*/     ULONG32      TlsExpansionCounter;                                                                                                  
+/*0x040*/     VOID*        TlsBitmap;                                                                                                            
+/*0x044*/     ULONG32      TlsBitmapBits[2];                                                                                                     
+/*0x04C*/     VOID*        ReadOnlySharedMemoryBase;                                                                                             
+/*0x050*/     VOID*        HotpatchInformation;                                                                                                  
+/*0x054*/     VOID**       ReadOnlyStaticServerData;                                                                                             
+/*0x058*/     VOID*        AnsiCodePageData;                                                                                                     
+/*0x05C*/     VOID*        OemCodePageData;                                                                                                      
+/*0x060*/     VOID*        UnicodeCaseTableData;                                                                                                 
+/*0x064*/     ULONG32      NumberOfProcessors;                                                                                                   
+/*0x068*/     ULONG32      NtGlobalFlag;                                                                                                         
+/*0x06C*/     UINT8        _PADDING0_[0x4];                                                                                                      
+/*0x070*/     union _LARGE_INTEGER CriticalSectionTimeout;                                                  // 4 elements, 0x8 bytes (sizeof)    
+/*0x078*/     ULONG32      HeapSegmentReserve;                                                                                                   
+/*0x07C*/     ULONG32      HeapSegmentCommit;                                                                                                    
+/*0x080*/     ULONG32      HeapDeCommitTotalFreeThreshold;                                                                                       
+/*0x084*/     ULONG32      HeapDeCommitFreeBlockThreshold;                                                                                       
+/*0x088*/     ULONG32      NumberOfHeaps;                                                                                                        
+/*0x08C*/     ULONG32      MaximumNumberOfHeaps;                                                                                                 
+/*0x090*/     VOID**       ProcessHeaps;                                                                                                         
+/*0x094*/     VOID*        GdiSharedHandleTable;                                                                                                 
+/*0x098*/     VOID*        ProcessStarterHelper;                                                                                                 
+/*0x09C*/     ULONG32      GdiDCAttributeList;                                                                                                   
+/*0x0A0*/     struct _RTL_CRITICAL_SECTION* LoaderLock;                                                                                          
+/*0x0A4*/     ULONG32      OSMajorVersion;                                                                                                       
+/*0x0A8*/     ULONG32      OSMinorVersion;                                                                                                       
+/*0x0AC*/     UINT16       OSBuildNumber;                                                                                                        
+/*0x0AE*/     UINT16       OSCSDVersion;                                                                                                         
+/*0x0B0*/     ULONG32      OSPlatformId;                                                                                                         
+/*0x0B4*/     ULONG32      ImageSubsystem;                                                                                                       
+/*0x0B8*/     ULONG32      ImageSubsystemMajorVersion;                                                                                           
+/*0x0BC*/     ULONG32      ImageSubsystemMinorVersion;                                                                                           
+/*0x0C0*/     ULONG32      ActiveProcessAffinityMask;                                                                                            
+/*0x0C4*/     ULONG32      GdiHandleBuffer[34];                                                                                                  
+/*0x14C*/     FUNCT_00A4_024F_PostProcessInitRoutine_DispatchAddress_FinishRoutine* PostProcessInitRoutine;                                      
+/*0x150*/     VOID*        TlsExpansionBitmap;                                                                                                   
+/*0x154*/     ULONG32      TlsExpansionBitmapBits[32];                                                                                           
+/*0x1D4*/     ULONG32      SessionId;                                                                                                            
+/*0x1D8*/     union _ULARGE_INTEGER AppCompatFlags;                                                         // 4 elements, 0x8 bytes (sizeof)    
+/*0x1E0*/     union _ULARGE_INTEGER AppCompatFlagsUser;                                                     // 4 elements, 0x8 bytes (sizeof)    
+/*0x1E8*/     VOID*        pShimData;                                                                                                            
+/*0x1EC*/     VOID*        AppCompatInfo;                                                                                                        
+/*0x1F0*/     struct _UNICODE_STRING CSDVersion;                                                            // 3 elements, 0x8 bytes (sizeof)    
+/*0x1F8*/     struct _ACTIVATION_CONTEXT_DATA* ActivationContextData;                                                                            
+/*0x1FC*/     struct _ASSEMBLY_STORAGE_MAP* ProcessAssemblyStorageMap;                                                                           
+/*0x200*/     struct _ACTIVATION_CONTEXT_DATA* SystemDefaultActivationContextData;                                                               
+/*0x204*/     struct _ASSEMBLY_STORAGE_MAP* SystemAssemblyStorageMap;                                                                            
+/*0x208*/     ULONG32      MinimumStackCommit;                                                                                                   
+/*0x20C*/     struct _FLS_CALLBACK_INFO* FlsCallback;                                                                                            
+/*0x210*/     struct _LIST_ENTRY FlsListHead;                                                               // 2 elements, 0x8 bytes (sizeof)    
+/*0x218*/     VOID*        FlsBitmap;                                                                                                            
+/*0x21C*/     ULONG32      FlsBitmapBits[4];                                                                                                     
+/*0x22C*/     ULONG32      FlsHighIndex;                                                                                                         
+/*0x230*/     VOID*        WerRegistrationData;                                                                                                  
+/*0x234*/     VOID*        WerShipAssertPtr;                                                                                                     
+/*0x238*/     VOID*        pContextData;                                                                                                         
+/*0x23C*/     VOID*        pImageHeaderHash;                                                                                                     
+              union                                                                                         // 2 elements, 0x4 bytes (sizeof)    
+              {                                                                                                                                  
+/*0x240*/         ULONG32      TracingFlags;                                                                                                     
+                  struct                                                                                    // 3 elements, 0x4 bytes (sizeof)    
+                  {                                                                                                                              
+/*0x240*/             ULONG32      HeapTracingEnabled : 1;                                                  // 0 BitPosition                     
+/*0x240*/             ULONG32      CritSecTracingEnabled : 1;                                               // 1 BitPosition                     
+/*0x240*/             ULONG32      SpareTracingBits : 30;                                                   // 2 BitPosition                     
+                  };                                                                                                                             
+              };                                                                                                                                 
+          }PEB, *PPEB;                                                                                                                           
+                                                                                                                                                

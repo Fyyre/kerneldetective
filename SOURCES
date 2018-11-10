@@ -1,0 +1,17 @@
+TARGETNAME = KeDetective
+TARGETTYPE = DRIVER
+RELEASETYPE = DDK
+#TARGETPATH = $(BASEDIR)\lib
+TARGETPATH = obj
+TARGETLIBS = VirtualizerDDK.lib
+
+
+
+X86_CPU_OPTIMIZATION=o2
+DRIVER_ALIGNMENT= 0x1000
+
+INCLUDES=..\..\inc
+
+SOURCES =	core.cpp   LDasm.cpp   memory.cpp   process.cpp   dll.cpp   ssdt.cpp\
+		shadow_ssdt.cpp   interrupt.cpp   debugv.cpp\
+		help.cpp   fsd.cpp   unhook.cpp   module.cpp   dbg.cpp
